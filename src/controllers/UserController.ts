@@ -1,7 +1,7 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
+import { getCustomRepository } from 'typeorm';
+import userRepository from '../repositories/UserRepository';
 
-import {getRepository} from 'typeorm';
-import userModel from '../models/User';
 
  export default class UserController{
 
@@ -9,7 +9,7 @@ import userModel from '../models/User';
         
         const {name , email} = request.body; 
 
-        const usersRepo = getRepository(userModel);
+        const usersRepo = getCustomRepository(userRepository);
     
         const emailAlreadyExists = await usersRepo.findOne({
             email,
